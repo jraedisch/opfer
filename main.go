@@ -17,9 +17,12 @@ func main() {
 	names := readNames("players.csv")
 	shuffled := shuffleNames(names)
 	victims := distributeVictims(shuffled)
-	for murder, victim := range victims {
+	fmt.Println("\n\n\n\nPress Enter when ready!")
+	readInput()
+	for _, murderer := range names {
+		victim := victims[murderer]
 		clearScreen()
-		fmt.Printf("Next victim is for %s's eyes only! (press Enter if you are %s)", murder, murder)
+		fmt.Printf("\n\n\n\nNext victim is for %s's eyes only! (press Enter if you are %s)", murderer, murderer)
 		readInput()
 		fmt.Printf("Your victim is: %s\nPress Enter if you wrote it down!", victim)
 		readInput()
