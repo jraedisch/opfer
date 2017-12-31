@@ -2,6 +2,7 @@ package main
 
 import (
 	"reflect"
+	"sort"
 	"testing"
 )
 
@@ -11,5 +12,14 @@ func TestDistributeVictims(t *testing.T) {
 	actual := distributeVictims(names)
 	if !reflect.DeepEqual(expected, actual) {
 		t.Errorf("expected\n%v\ngot\n%v", expected, actual)
+	}
+}
+
+func TestShuffleNames(t *testing.T) {
+	sorted := []string{"A", "B", "C", "D"}
+	shuffled := shuffleNames(sorted)
+	sort.Strings(shuffled)
+	if !reflect.DeepEqual(sorted, shuffled) {
+		t.Errorf("shuffled does not contain the right names: %v", shuffled)
 	}
 }
