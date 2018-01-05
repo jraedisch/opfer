@@ -14,20 +14,47 @@ import (
 )
 
 func main() {
+	clearScreen()
+	marginTop()
+	marginLeft()
+	fmt.Println("Add/edit players.csv in the same folder as this binary (one name per line, no commas).")
+	marginLeft()
+	fmt.Println("Press Enter when ready!")
+	marginLeft()
+	readInput()
 	names := readNames("players.csv")
 	shuffled := shuffleNames(names)
 	victims := distributeVictims(shuffled)
-	fmt.Println("\n\n\n\nPress Enter when ready!")
-	readInput()
 	for _, murderer := range names {
 		victim := victims[murderer]
 		clearScreen()
-		fmt.Printf("\n\n\n\nNext victim is for %s's eyes only! (press Enter if you are %s)", murderer, murderer)
+		marginTop()
+		marginLeft()
+		fmt.Printf("Next victim is for %s's eyes only! (press Enter if you are %s)\n", murderer, murderer)
+		marginLeft()
 		readInput()
-		fmt.Printf("Your victim is: %s\nPress Enter if you wrote it down!", victim)
+		clearScreen()
+		marginTop()
+		marginLeft()
+		fmt.Printf("Your victim is: %s\n", victim)
+		marginLeft()
+		fmt.Println("Press Enter if you wrote it down!")
+		marginLeft()
 		readInput()
 	}
+	clearScreen()
+	marginTop()
+	marginLeft()
 	fmt.Println("All victims have been distributed :)")
+	marginTop()
+}
+
+func marginTop() {
+	fmt.Print("\n\n\n\n")
+}
+
+func marginLeft() {
+	fmt.Print("    ")
 }
 
 func distributeVictims(names []string) map[string]string {
